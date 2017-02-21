@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>服务器V0.0.1</title>
+    <script>window.$ = window.jQuery = require('./js/jquery-3.1.1.min.js');</script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="js/index.js"></script>
+    <style>
+        .msgBox{
+            width: 98%;height: 300px;border:1px solid gray;overflow: auto;
+        }
+        .msgRow{
+            height: 20px;width: 100%;border-bottom: 1px solid #eeeeee;
+        }
+        .msgRowTop{
+            height: 20px;width: 98%;border: 1px solid #cccccc;text-align: right;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>工具服务器</h1>
+<div>
+    <button type="button" id="btnTest">测试按钮</button>
+    <button type="button" id="btnClose">关闭窗口</button>
+    <button type="button" id="btnWin">窗口调试</button>
+    <button type="button" id="btnFile">选择文件...</button>
+    <button type="button" id="btnMsg">弹出消息</button>
+    <button type="button" id="btnSendMsg" class="red">发送消息</button>
+    <button type="button" id="btnOpenDev">调试工具</button>
+    <div id="msg">--</div>
+    <div id="msgVersion">
+        
+    </div>
+    <div>
+        <!--<textarea style="width: 98%;height: 300px;" id="msgSocket"></textarea>-->
+        <!--<select id="msgSocket" multiple style="width: 100%;height: 300px;">
+            <option>&#45;&#45;</option>
+        </select>-->
+        <div class="msgRowTop">
+            共：<span class="red" id="msgCount">0</span> 条
+            显示：<span class="red" id="msgCountCur">0</span> 条
+            <button type="button" id="btnClean">清空日志</button>
+            <button type="button" id="btnExport">导出日志</button>
+            <input type="checkbox" id="isStopScroll" checked/><label for="isStopScroll">自动滚动</label>
+        </div>
+        <div class="msgBox" id="msgSocket">
+            <div class="msgRow" id="msgOne">这是日志行</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

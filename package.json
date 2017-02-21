@@ -1,0 +1,23 @@
+{
+  "name": "newServer",
+  "version": "0.1.0",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "devtron": "^1.4.0",
+    "electron-packager": "^8.5.1"
+  },
+  "script": {
+    "packager": "electron-packager ./ mala --all --out ./target --electron-version 1.4.15",
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "Server",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  }
+}
