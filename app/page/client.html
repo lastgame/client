@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="azhong.com">
+    <title>服务配置工具v1.0</title>
+    <script>window.$ = window.jQuery = require('./js/jquery-3.1.1.min.js');</script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="./codemirror/lib/bootstrap/css/bootstrap.min.css">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="./codemirror/lib/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./codemirror/theme/xq-light.css">
+    <script src="./codemirror/lib/codemirror.js"></script>
+    <script src="./codemirror/lib/xml.js"></script>
+    <script src="./codemirror/lib/sql.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="js/client.js"></script>
+    <style type="text/css">
+        .xmlBox {
+            width: 96%;
+        }
+        .CodeMirror {
+            border-top: 1px dotted red;
+            border-bottom: 1px dotted red;
+        }
+    </style>
+</head>
+<body>
+<div style="margin-left:0px;">
+    <h1>Server tools</h1>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+        <li role="presentation"><a href="#myCat" aria-controls="settings" role="tab" data-toggle="tab">MyCat配置</a>
+        <li role="presentation"><a href="#mySql" aria-controls="settings" role="tab" data-toggle="tab">MySql配置</a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <input type="file" id="btnReadFile"/>
+            <textarea id="sqlCode" class="xmlBox"></textarea>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="myCat">
+            <div class="dropdown">
+                <button id="btnLoadXml-list" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="btn btn-info">
+                    加载配置文件
+                    <span class="caret"></span>
+                </button>
+                <span id="xmlPath" class="text-primary"></span>
+                <ul class="dropdown-menu" aria-labelledby="btnLoadXml-list">
+                    <li><a href="#" id="btnLoadXml-schema" class="_loadXml" xml="schema.xml">schema.xml [分区表配置文件]</a>
+                    </li>
+                    <li><a href="#" id="btnLoadXml-server" class="_loadXml" xml="server.xml">server.xml [服务配置文件]</a>
+                    </li>
+                    <li><a href="#" id="btnLoadXml-rule" class="_loadXml" xml="rule.xml">rule.xml [分区表配置文件]</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#" id="btnReload">重新加载</a></li>
+                </ul>
+            </div>
+            <span class="label-danger" id="xmlMsg"></span>
+            <textarea id="code" name="code" class="xmlBox"></textarea>
+            <div>
+                <button class="btn-danger" id="btnRestart">
+                    重新启动MyCat
+                </button>
+                <button class="btn-success" id="btnSave">
+                    保存
+                </button>
+                <input type="checkbox" id="isSaveWithBak" checked /><label for="isSaveWithBak">同时保存备份</label>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="mySql">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul id="tbList">
+                        <li><input type="checkbox" value="10" id="tb_t_admin"/><label for="tb_t_admin">t_admin 管理员表</label></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <input type="checkbox" value="t_admin" id="t_admin" /><label for="t_admin" title="t_admin">t_admin</label>
+                    <br />
+                    <input type="button" id="btnLoadTable" class="btn btn-info" value="加载数据表" />
+                    <button class="btn btn-info" id="btnLoadCreateTable">取得create语句</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

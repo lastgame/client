@@ -2,9 +2,10 @@
  * Created by Administrator on 2017/1/30.
  */
 "use strict";
-const {app, BrowserWindow,globalShortcut,ipcMain,dialog} = require('electron');
+const {app, BrowserWindow,globalShortcut,ipcMain,dialog,Menu} = require('electron');
 const path = require('path');
 const url = require('url');
+const initFile = 'client.html';//入口文件
 
 // 保持一个对于 window 对象的全局引用，如果你不这样做，
 // 当 JavaScript 对象被垃圾回收， window 会被自动地关闭
@@ -12,11 +13,16 @@ let win = null;
 
 let createWindow = () => {
     // 创建浏览器窗口。
-    win = new BrowserWindow({width: 1200, height: 600});
+    win = new BrowserWindow({
+        width: 1000,
+        height: 600,
+        darkThem:true,
+        titleBarStyle:'hidden-inse'
+    });
     //win.loadURL('http:');
     // 加载应用的 index.html。
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'page/server.html'),
+        pathname: path.join(__dirname, 'page/'+initFile),
         protocol: 'file:',
         slashes: true
     }));
@@ -88,3 +94,6 @@ app.on('activate', () => {
 
 // 在这文件，你可以续写应用剩下主进程代码。
 // 也可以拆分成几个文件，然后用 require 导入。
+let menuTemplate = require('./inc/menu.js');
+const menu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(menu);

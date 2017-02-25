@@ -7,10 +7,11 @@
   },
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron-packager": "^8.5.1"
+    "electron-packager": "^8.5.1",
+    "electron-windows-inno-installer": "^0.4.0"
   },
   "script": {
-    "packager": "electron-packager ./ mala --all --out ./target --electron-version 1.4.15",
+    "packager": "electron-packager ./ nbClient  --out e:/build --electron-version 1.6.0 --arch x64 --overwrite --icon=./app/resource/ico.ico --asar --app-version=1.0.1.1 --version-string=versionByDevin --win32metadata.ProductName=ddServer --win32metadata.FileDescription=ddServer --win32metadata.OriginalFilename=dd.exe --app-copyright=byDD",
     "pack": "build --dir",
     "dist": "build"
   },
