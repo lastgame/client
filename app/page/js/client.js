@@ -6,6 +6,7 @@
 "use strict";
 let editor={};
 let socket;
+const ipc = require('electron').ipcRenderer;
 $(function () {
     let loadXml = (data) => {
         $('#code').val(data);
@@ -99,6 +100,24 @@ $(function () {
             buildTableList(o);
             log('服务器返回：',o);
         });
+    });
+    //系统版本信息
+    $('#version').text(require('electron').remote.app.getVersion());
+    //打开新窗口
+    $('#btnOpenWin').on('click',()=>{
+        ipc.send('openWin',{
+            width: 500,
+            height: 300,
+            //darkThem:true,
+            frame: true,
+            titleBarStyle:'hidden-inse',
+            backgroundColor: '#eee',
+            show:true,
+            skipTaskbar:true,
+            title:'服务器IP配置',
+            resizable:false,
+            //movable:false
+        },true,true);
     });
 });
 

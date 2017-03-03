@@ -1,7 +1,8 @@
 {
-  "name": "newServer",
+  "name": "nbclient",
   "version": "0.1.0",
   "main": "app/main.js",
+  "description" : "azhong.com",
   "scripts": {
     "start": "electron ."
   },

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<fieldset>
+    this is azhong speaking...
+</fieldset>
+<script>
+    window.onbeforeunload = function(e){
+        if(!confirm('您修改了信息，但却未保存，是否关闭本窗口？','提醒')){
+            e.returnValue = false
+        }
+    }
+</script>
+</body>
+</html>

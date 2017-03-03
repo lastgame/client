@@ -5,7 +5,7 @@
 const {app, BrowserWindow,globalShortcut,ipcMain,dialog,Menu} = require('electron');
 const path = require('path');
 const url = require('url');
-const initFile = 'client.html';//入口文件
+const initFile = 'index.html';//入口文件
 
 // 保持一个对于 window 对象的全局引用，如果你不这样做，
 // 当 JavaScript 对象被垃圾回收， window 会被自动地关闭
@@ -65,6 +65,33 @@ let createWindow = () => {
         }
     }).on('openDev',()=>{
         win.webContents.openDevTools({mode:'bottom'});
+    }).on('openWin',(e,opt,isChild=true,isModal=true)=>{
+        if(typeof opt !== 'object'){
+            return !!dialog.showErrorBox('错误的窗口参数','系统错误');
+        }
+        //console.log('参数',opt);
+        isChild && Object.assign(opt,{parent:win});
+        isModal && Object.assign(opt,{modal:true});
+        //console.log('参数',opt,isChild);
+        let openWin = new BrowserWindow(opt);
+            openWin.loadURL(url.format({
+            pathname: path.join(__dirname, 'page/test.html'),
+            protocol: 'file:',
+            slashes: true
+        }));
+        if(!opt.show){
+            openWin.once('ready-to-show', () => {
+                openWin.show()
+            });
+        }else{
+            //openWin.show();
+        }
+        openWin.setMenuBarVisibility(false);
+        openWin.on('closed', () => {
+            openWin = null;
+        }).on('close',(e)=>{
+
+        });
     });
 
 };
