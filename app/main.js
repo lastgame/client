@@ -5,7 +5,7 @@
 const {app, BrowserWindow,globalShortcut,ipcMain,dialog,Menu} = require('electron');
 const path = require('path');
 const url = require('url');
-const initFile = 'index.html';//入口文件
+const initFile = 'client.html';//入口文件
 
 // 保持一个对于 window 对象的全局引用，如果你不这样做，
 // 当 JavaScript 对象被垃圾回收， window 会被自动地关闭
